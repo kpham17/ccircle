@@ -62,5 +62,12 @@ class Solution:
 
     # Your solution!
     def moveTowardPizza(self, cat):
-        # Wheeeee!
-        cat.turnLeft()
+        if not cat.isBlocked():
+                cat.walk()
+                cat.turnLeft()
+        if cat.isBlocked():
+            cat.turnRight()
+
+
+
+
