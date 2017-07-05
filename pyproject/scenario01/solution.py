@@ -1,3 +1,5 @@
+
+import worlds
 # Your solution goes in this file!
 
 '''
@@ -15,6 +17,8 @@
             True iff cat is facing east
         cat.isFacingW() -> Bool
             True iff cat is facing west
+        cat.smellsPizza() -> Bool
+            True iff the cat is right in front of the pizza (and is facing it)
 
         Just a refresher...:
 
@@ -37,6 +41,8 @@
             Instructs the cat to turn right / clockwise
         cat.walk() -> None
             Instructs the cat to walk in the direction it is facing
+
+    NOTE: You can only call cat.walk() ONCE per call to moveTowardPizza!!
 '''
 
 class Solution:
@@ -46,9 +52,9 @@ class Solution:
         self.checked = False
         pass
 
-    # Choose your level here: 'easy', 'medium', or 'hard'!
+    # Choose your level here: 'worlds.easy()', 'worlds.medium()', or 'worlds.hard()'!
     def getLevel(self):
-        return 'easy'
+        return worlds.hard()
 
     # Smaller pause time = faster simulation
     def getPauseTime(self):
@@ -66,5 +72,4 @@ class Solution:
             self.justWalked = False
             self.checked = True
         else:
-            cat.turnLeft()
-            self.blockedRight = True
+        cat.turnLeft()self.blockedRight = True
