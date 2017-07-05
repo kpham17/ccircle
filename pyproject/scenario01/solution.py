@@ -47,9 +47,9 @@ import worlds
 
 class Solution:
     def __init__(self):
-        self.blockedRight = False
-        self.justWalked = False
-        self.checked = False
+        self.posList = []
+
+        self.posX, self.posY = (0,0)
         pass
 
     # Choose your level here: 'worlds.easy()', 'worlds.medium()', or 'worlds.hard()'!
@@ -58,18 +58,20 @@ class Solution:
 
     # Smaller pause time = faster simulation
     def getPauseTime(self):
-        return 0.2
+        return 0.5
 
     # Your solution!
     def moveTowardPizza(self, cat):
-        if (self.blockedRight and not cat.isBlocked()) or (self.checked and not cat.isBlocked()):
-            cat.walk()
-            self.justWalked = True
-            self.blockedRight = False
-            self.checked = False
-        elif self.justWalked:
-            cat.turnRight()
-            self.justWalked = False
-            self.checked = True
-        else:
-        cat.turnLeft()self.blockedRight = True
+        cat.turnRight()
+        while cat.isBlocked():
+            cat.turnLeft()
+        if cat.isFacingN():
+            self.posList.push(self.pos)
+            self.posY += 1
+        if cat.isFacingS():
+            self.posList.push(self.pos)
+        if cat.isFacingE():
+            self.posList.push(self.pos)
+        if cat.isFacingW():
+            self.posList.push(self.pos)
+        cat.walk()
