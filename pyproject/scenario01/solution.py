@@ -41,9 +41,9 @@
 
 class Solution:
     def __init__(self):
-        # If you want to keep track of any variables, you can initialize them here using self.var = value
-        # e.g.
-        #   self.moveCount = 0
+        self.blockedRight = False
+        self.justWalked = False
+        self.checked = False
         pass
 
     # Choose your level here: 'easy', 'medium', or 'hard'!
@@ -52,9 +52,19 @@ class Solution:
 
     # Smaller pause time = faster simulation
     def getPauseTime(self):
-        return 0.5
+        return 0.2
 
     # Your solution!
     def moveTowardPizza(self, cat):
-        # Wheeeee!
-        cat.turnLeft()
+        if (self.blockedRight and not cat.isBlocked()) or (self.checked and not cat.isBlocked()):
+            cat.walk()
+            self.justWalked = True
+            self.blockedRight = False
+            self.checked = False
+        elif self.justWalked:
+            cat.turnRight()
+            self.justWalked = False
+            self.checked = True
+        else:
+            cat.turnLeft()
+            self.blockedRight = True
