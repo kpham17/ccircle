@@ -43,10 +43,10 @@ class StockTrader:
         self.days = 0
         self.stockLast = [[],[] ,[],[],[],[],[],[]]
         self.stockMean=[0,0,0,0,0,0,0,0]
-        self.stockVal = [[],[] ,[],[],[],[],[],[]]
-        self.max = [[],[] ,[],[],[],[],[],[]]
-        self.min = [[],[] ,[],[],[],[],[],[]]
-        self.distance = [[],[] ,[],[],[],[],[],[]]
+        self.stockVal = [0,0,0,0,0,0,0,0]
+        self.max = [0,0,0,0,0,0,0,0]
+        self.min = [0,0,0,0,0,0,0,0]
+        self.distance = [0,0,0,0,0,0,0,0]]
 
         pass
 
