@@ -53,36 +53,17 @@ class Solution:
 
     # Choose your level here: 'worlds.easy()', 'worlds.medium()', or 'worlds.hard()'!
     def getLevel(self):
-        return worlds.hard()
+        return worlds.easy()
 
     # Smaller pause time = faster simulation
     def getPauseTime(self):
-        return 0.01
+        return 0.5
 
-    def wall_on_right(self, cat):
-        cat.turnRight()
-        wall_on_right = cat.isBlocked()
-        cat.turnLeft()
 
-        return wall_on_right
-
-    """ Solution assulmes two things:
-            1) Cat always starts beside a wall.
-            2) Pizza exists beside a wall.
-    """
+        # Your solution!
     def moveTowardPizza(self, cat):
-        # Follow the right wall.
-        is_wall_on_right = self.wall_on_right(cat)
-
-        if not is_wall_on_right and self.was_wall_on_right_last_frame:
-            cat.turnRight()
+        if not cat.isBlocked():
             cat.walk()
-
-        if is_wall_on_right:
-            if not cat.isBlocked():
-                cat.walk()
-            else:
-                cat.turnLeft()
-
-        self.was_wall_on_right_last_frame = is_wall_on_right
-
+            cat.turnLeft()
+        if cat.isBlocked():
+            cat.turnRight()
