@@ -1,4 +1,5 @@
 # Your solution goes in this file!
+import statistics
 
 '''
   --- ACCOUNT ------------------------------------------------------------------
@@ -39,6 +40,14 @@
 class StockTrader:
     def __init__(self):
         # Set variables if you want
+        self.days = 0
+        self.stockLast = [[],[] ,[],[],[],[],[],[]]
+        self.stockMean=[0,0,0,0,0,0,0,0]
+        self.stockVal = [[],[] ,[],[],[],[],[],[]]
+        self.max = [[],[] ,[],[],[],[],[],[]]
+        self.min = [[],[] ,[],[],[],[],[],[]]
+        self.distance = [[],[] ,[],[],[],[],[],[]]
+
         pass
 
     # Controls how difficult the simulation is:
@@ -46,7 +55,7 @@ class StockTrader:
     #    0.5 -> moderate
     #    1.0 -> hardest
     def getDifficulty(self):
-        return 0.0
+        return 0.2
 
     # Controls how fast the simulation runs; 0 = fastest
     def getPauseTime(self):
@@ -60,10 +69,25 @@ class StockTrader:
     def trade(self, account, market):
         # This is a very basic and bad starter strategy: get a list of stocks, buy any stock that is less than $10
         # (if we can afford it); sell any stock that is more than $20 (if we own it). You must do better than this!
+        self.days += 1
         syms = market.getStockSymbols()
         for sym in syms:
+            a = syms.index(sym)
             price = market.getPrice(sym)
-            if price < 10 and account.getBalance() >= price:
-                market.buy(account, sym, 1)
-            if price > 10 and account.getShares(sym) > 0:
-                market.sell(account, sym, 1)
+            self.stockVal.append(price)
+            self.stockLast[a]=self.stockVal
+            if len(self.stockVal) > 150:
+                del self.stockVal[0]
+            self.max[a] = max(self.stockVal)
+            self.min[a] = min(self.stockVal)
+            self.distance[a] = self.max - self.min
+            self.average[a] = statistics.mean(self.stockVal)
+        print(self.min)
+        print(self.max)
+        print(self.distance)
+        print(self.average)
+        if days >= 150:
+            for sym in syms:
+                price = market.getPrice(sym)
+
+
