@@ -47,9 +47,8 @@ import worlds
 
 class Solution:
     def __init__(self):
-        self.posList = []
-
-        self.posX, self.posY = (0,0)
+        # If you want to keep track of any variables, you can initialize them here using self.var = value
+        self.was_wall_on_right_last_frame = False
         pass
 
     # Choose your level here: 'worlds.easy()', 'worlds.medium()', or 'worlds.hard()'!
@@ -58,20 +57,32 @@ class Solution:
 
     # Smaller pause time = faster simulation
     def getPauseTime(self):
-        return 0.5
+        return 0.01
 
-    # Your solution!
-    def moveTowardPizza(self, cat):
+    def wall_on_right(self, cat):
         cat.turnRight()
-        while cat.isBlocked():
-            cat.turnLeft()
-        if cat.isFacingN():
-            self.posList.push(self.pos)
-            self.posY += 1
-        if cat.isFacingS():
-            self.posList.push(self.pos)
-        if cat.isFacingE():
-            self.posList.push(self.pos)
-        if cat.isFacingW():
-            self.posList.push(self.pos)
-        cat.walk()
+        wall_on_right = cat.isBlocked()
+        cat.turnLeft()
+
+        return wall_on_right
+
+    """ Solution assulmes two things:
+            1) Cat always starts beside a wall.
+            2) Pizza exists beside a wall.
+    """
+    def moveTowardPizza(self, cat):
+        # Follow the right wall.
+        is_wall_on_right = self.wall_on_right(cat)
+
+        if not is_wall_on_right and self.was_wall_on_right_last_frame:
+            cat.turnRight()
+            cat.walk()
+
+        if is_wall_on_right:
+            if not cat.isBlocked():
+                cat.walk()
+            else:
+                cat.turnLeft()
+
+        self.was_wall_on_right_last_frame = is_wall_on_right
+
