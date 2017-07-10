@@ -15,7 +15,7 @@ class Ball:
 
         window.drawCircle(self.x,self.y,16,1,0,0.2,1)
 
-    def update(self,dt,x,y):
+    def update(self,dt):
         accelX = self.fx/self.mass
         accelY = self.fy / self.mass
         self.vx += dt*accelX
@@ -31,4 +31,6 @@ class Ball:
             self.vx*=-0.99
         if self.y == y and self.x == x:
             self.vy*=-0.99
+            self.vx *= -0.99
+
 
