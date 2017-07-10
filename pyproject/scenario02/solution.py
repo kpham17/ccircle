@@ -86,7 +86,7 @@ class StockTrader:
         print(self.max)
         print(self.distance)
         print(self.average)
-        if days >= 150:
+        if self.days >= 150:
             for sym in syms:
                 price = market.getPrice(sym)
 
