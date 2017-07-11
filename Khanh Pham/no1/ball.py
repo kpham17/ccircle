@@ -5,7 +5,7 @@ class Ball:
     def __init__(self,x,y):
         self.x = x
         self.y = y
-        self.vx = 0
+        self.vx = 50
         self.vy = 0
         self.fx = 0
         self.fy = 0
@@ -30,17 +30,14 @@ class Ball:
         self.fy = 0
         a = self.x - x
         b = self.y - y
-        if a == 0:
-            self.vx *= -1.2
-        elif 0 < abs(a) <= 2:
-            self.vx *= -2 / (2*a)
-        if b == 0:
-            self.vy *= -1.2
-        elif 0 < abs(b) <= 2:
-            self.vy *= -2 / (2*b)
+        c1 = 20 - a
+        c2  = 20 -b
+        if c1 > 0:
+            self.vx += c1
+        if c2 > 0:
+            self.vy += c2
         if self.y > 500 or self.y < 0:
             self.vy *= -0.99
-            self.y = 500
         if self.x > 800 or self.x < 0:
             self.vx *= -0.99
 

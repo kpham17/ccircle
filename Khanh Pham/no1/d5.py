@@ -8,7 +8,7 @@ import ball
 
 window = ccircle.Window('lab 5', 800,600)
 myWorld = world.World('d34d')
-a = []
+balls =[]
 for i in range(200):
     x = random.randint(0,800)
     y = random.randint(0, 150)
@@ -26,15 +26,17 @@ for i in range(1000):
 for i in range(1):
     x = random.randint(200, 600)
     y = random.randint(200, 400)
-    myWorld.add(ball.Ball(x,y))
-    a.append([x,y])
+    myball = ball.Ball(x,y)
+    myWorld.add(myball)
+    balls.append(myball)
 
 start = time.time()
 dt = 1.0/60.0
 while window.isOpen():
     window.clear(0.8,0.8,0.8)
     x,y = window.getMousePos()
-    my_ball.apply_force(100,1009.8)
+    for k in balls:
+        k.apply_force(0,1000)
     myWorld.draw(window)
     myWorld.update(dt,x,y)
     window.update()

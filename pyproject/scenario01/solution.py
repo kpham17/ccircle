@@ -53,11 +53,11 @@ class Solution:
 
     # Choose your level here: 'worlds.easy()', 'worlds.medium()', or 'worlds.hard()'!
     def getLevel(self):
-        return worlds.easy()
+        return worlds.hard()
 
     # Smaller pause time = faster simulation
     def getPauseTime(self):
-        return 0.5
+        return 0
 
 
         # Your solution!
