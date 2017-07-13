@@ -1,9 +1,9 @@
 import markov
 import util
 
-words = util.readWords('text/spongebob_texas.txt')
+words = util.readLetters('text/spongebob_texas.txt')
 
-chain = markov.Chain(1)
+chain = markov.Chain(3)
 for word in words:
     chain.observe(word)
 
