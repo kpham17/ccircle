@@ -23,7 +23,7 @@ while True:
             target = [x2,y2]
 
     print(target)
-    xd = x1 - target[0]
+    xd = target[0] - x1
     yd = y1 - target[1]
 
     c = max(abs(xd),abs(yd))
