@@ -10,7 +10,7 @@ class World:
         window.drawRect(0,0,800,400,0.3,0.5,1.0)
         window.drawRect(0, 400, 800, 200, 0.2, 0.5, 0.1)
         for obj in self.objects:
-            obj.draw(window)
+            obj.draw(window,lv)
 
     def update(self,dt,x,y):
         for obj in self.objects:
