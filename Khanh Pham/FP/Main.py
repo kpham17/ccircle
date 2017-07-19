@@ -15,8 +15,8 @@ lv = 2
 myPlayer = Player.Player(480,360,lv)
 myWorld.add(myPlayer)
 
-m1 = 1
-m2 = 7
+m1 = 0
+m2 = 3
 myMoves = Moves.moves(30,120,m1,m2)
 myWorld.add(myMoves)
 
@@ -27,8 +27,7 @@ while window.isOpen():
     myPlayer.move()
     myWorld.draw(window)
     if ccircle.isMouseDown('left'):
-        mx, my =  window.getMousePos()
-        print(my,my)
+        mx, my = window.getMousePos()
         myMoves.if_clicked(mx,my)
     myWorld.update(dt)
     window.update()
