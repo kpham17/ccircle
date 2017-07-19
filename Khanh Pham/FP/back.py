@@ -8,18 +8,7 @@ class Back:
         self.count = 0
         self.countdown = 0
 
-    def move(self):
-        if ccircle.isKeyDown('left'):
-            self.x+=1
-        elif ccircle.isKeyDown('right'):
-            self.x-=1
-        if self.x <= -1024:
-            self.x = 0
-        if self.x >= 1024:
-            self.x = 0
-
-
-    def draw(self,window,lv):
+    def draw(self,window):
         self.image.draw(self.x, self.y, 1024, 512)
         self.image.draw(self.x+1024, self.y, 1024, 512)
         self.image.draw(self.x - 1024, self.y, 1024, 512)
@@ -31,3 +20,13 @@ class Back:
         if self.countdown >= 1.25:
             self.count += 1
             self.countdown = 0
+        if ccircle.isKeyDown('right'):
+            self.x-=dt*25
+        if ccircle.isKeyDown('left'):
+            self.x+=dt*25
+        if self.x <= -1024:
+            self.x = 0
+        if self.x >= 1024:
+            self.x = 0
+
+

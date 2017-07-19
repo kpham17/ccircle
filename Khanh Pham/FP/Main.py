@@ -3,24 +3,33 @@ import World
 import back
 import Player
 import time
+import Moves
 
 window = ccircle.Window('Cantercorn', 1024,512)
 myWorld = World.World('test')
 bg =  back.Back(0,0)
 myWorld.add(bg)
 
-myPlayer = Player.Player(480,360)
+lv = 2
+
+myPlayer = Player.Player(480,360,lv)
 myWorld.add(myPlayer)
 
-lv = 2
+m1 = 1
+m2 = 7
+myMoves = Moves.moves(30,120,m1,m2)
+myWorld.add(myMoves)
 
 start = time.time()
 dt = 1.0/60.0
 while window.isOpen():
     window.clear(0.8,0.8,0.8)
     myPlayer.move()
-    bg.move()
-    myWorld.draw(window,lv)
+    myWorld.draw(window)
+    if ccircle.isMouseDown('left'):
+        mx, my =  window.getMousePos()
+        print(my,my)
+        myMoves.if_clicked(mx,my)
     myWorld.update(dt)
     window.update()
 
