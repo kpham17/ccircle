@@ -13,14 +13,14 @@ class Player:
         self.heads = ccircle.Image('Heads.png')
 
     def move(self):
-        if ccircle.isKeyDown('left'):
+        if ccircle.isKeyDown('a'):
             self.facing = False
-        elif ccircle.isKeyDown('right'):
+        elif ccircle.isKeyDown('d'):
             self.facing = True
         else:
             self.count = 0
 
-    def draw(self,window):
+    def draw(self,window,ex):
         if self.facing:
             if self.count==0:
                 self.image1.drawSub(self.x, self.y, 69, 69, 276, 0, 69, 69)
@@ -66,10 +66,18 @@ class Player:
 
     def update(self, dt):
 
-        if ccircle.isKeyDown('right') or ccircle.isKeyDown('left') :
+        if ccircle.isKeyDown('a') or ccircle.isKeyDown('d') :
             self.countdown += dt
-        if self.countdown >= 1.25:
+        if self.countdown >= 1:
             self.count += 1
             self.countdown = 0
+        if ccircle.isKeyDown('d'):
+            self.x += dt * 25
+        if ccircle.isKeyDown('a'):
+            self.x -= dt * 25
+        if self.x>940:
+            self.x = 940
+        if self.x<100:
+            self.x = 100
 
 
