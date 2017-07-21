@@ -1,20 +1,22 @@
 import ccircle
 
 class Enemy:
-    def __init__(self,x,y,lv):
+    def __init__(self,x,y,lv,pic1,pic2,lk,rk, facing):
         self.lv = lv
         self.x = x
         self.y = y
+        self.lk = lk
+        self.rk = rk
         self.count = 0
         self.countdown = 0
-        self.facing  =  False
-        self.image1 = ccircle.Image('RedBody.png')
-        self.heads = ccircle.Image('RHeads.png')
+        self.facing  =  facing
+        self.image1 = ccircle.Image(pic1)
+        self.heads = ccircle.Image(pic2)
 
     def move(self):
-        if ccircle.isKeyDown('left'):
+        if ccircle.isKeyDown(self.lk):
             self.facing = False
-        elif ccircle.isKeyDown('right'):
+        elif ccircle.isKeyDown(self.rk):
             self.facing = True
         else:
             self.count = 0
