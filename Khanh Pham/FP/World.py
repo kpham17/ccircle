@@ -6,9 +6,9 @@ class World:
     def add(self, obj):
         self.objects.append(obj)
 
-    def draw(self,window,ex):
+    def draw(self,window):
         for obj in self.objects:
-            obj.draw(window,ex)
+            obj.draw(window)
 
     def update(self, dt):
         for obj in self.objects:

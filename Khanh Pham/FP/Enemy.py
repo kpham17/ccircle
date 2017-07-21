@@ -1,7 +1,7 @@
 import ccircle
 
 class Enemy:
-    def __init__(self,x,y,lv):
+    def __init__(self,x,y,lv,fa):
         self.lv = lv
         self.x = x
         self.y = y
@@ -19,7 +19,7 @@ class Enemy:
         else:
             self.count = 0
 
-    def draw(self,window,ex):
+    def draw(self,window):
         for i in range(4):
             if self.facing:
                 if self.count == 0:
