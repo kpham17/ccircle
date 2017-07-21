@@ -52,9 +52,9 @@ class Players:
             self.x += dt * 25
         if ccircle.isKeyDown(self.lk):
             self.x -= dt * 25
-        if self.x>940:
-            self.x = 940
-        if self.x<0:
-            self.x = 0
+        if self.x>840:
+            self.x = 840
+        if self.x<100:
+            self.x = 100
 
 

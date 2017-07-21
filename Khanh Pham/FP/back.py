@@ -8,12 +8,12 @@ class Back:
         self.count = 0
         self.countdown = 0
 
-    def draw(self,window,ex):
+    def draw(self,window):
         self.image.draw(self.x, self.y, 1024, 512)
         self.image.draw(self.x+1024, self.y, 1024, 512)
         self.image.draw(self.x - 1024, self.y, 1024, 512)
         window.drawRect(0,0,100,512,0,0,1,.5)
-        window.drawRect(924, 0, 100, 512, 1, 0, 0, .5)
+        window.drawRect(910, 0, 100, 512, 1, 0, 0, .5)
 
     def update(self, dt):
         pass

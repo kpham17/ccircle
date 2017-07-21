@@ -1,13 +1,16 @@
 import ccircle
+import Util
 import random
 class moves:
-    def __init__(self,x,y,m1,m2,k1,k2,ex):
+    def __init__(self,x,y,m1,m2,k1,k2,ex,ek1,ek2):
         self.x = x
         self.y = y
         self.m1 = m1
         self.m2 = m2
         self.k1 = k1
         self.k2 = k2
+        self.ek1 = ek1
+        self.ek2 = ek2
         self.countdown1 = 0
         self.countdown2 = 0
         self.weapons= ccircle.Image('Weapons.png')
@@ -22,9 +25,11 @@ class moves:
         self.mt1 = 1
         self.mt2 = 1
         self.ex = ex
+        self.shield = False
 
 
-    def draw(self,window):
+    def draw(self,window,m1,m2):
+
         window.drawRect(self.x , self.y - 90, 68, 68, 1, .843, 0)
         window.drawRect(self.x+4,self.y-86,60,60,0,0,0)
 
@@ -38,9 +43,9 @@ class moves:
             else:
                 self.ly = 47
                 self.a = i-4
-            if self.m1 == i:
+            if m1 == i:
                 self.weapons.drawSub(self.x, self.y - 90, 69, 69, 47*self.a -(self.a-1), self.ly, 46, 46)
-            if self.m2 == i:
+            if m2 == i:
                 self.weapons.drawSub(self.x, self.y, 69, 69, 47*self.a -(self.a-1), self.ly, 46, 46)
 
         if self.hit > 0 and len(self.da) != 0:
@@ -48,8 +53,14 @@ class moves:
             for i in range(len(self.da)):
                 self.dl.append([random.randint(15, 75), random.randint(15, 90)])
             for i in range(len(self.da)):
-                self.fa.drawCentered (str(self.da[i]),self.ex + self.dl[i][0],330 + self.dl[i][1], 11,0.1,0.5,0.5)
-                self.fa.drawCentered (str(self.da[i]),self.ex + self.dl[i][0],330 + self.dl[i][1], 8,0.2,1,1)
+                if self.shield:
+                    self.fa.drawCentered(str(self.da[i]*1/2), self.ex + self.dl[i][0], 330 + self.dl[i][1], 11, 0.1, 0.5, 0.5)
+                    self.fa.drawCentered(str(self.da[i]*1/2), self.ex + self.dl[i][0], 330 + self.dl[i][1], 8, 0.2, 1, 1)
+                    self.shield = False
+
+                else:
+                    self.fa.drawCentered (str(self.da[i]),self.ex + self.dl[i][0],330 + self.dl[i][1], 11,0.1,0.5,0.5)
+                    self.fa.drawCentered (str(self.da[i]),self.ex + self.dl[i][0],330 + self.dl[i][1], 8,0.2,1,1)
 
         if self.eh < 0:
             self.eh = 0
@@ -60,7 +71,7 @@ class moves:
 
 
     def if_clicked(self,ex):
-        if ccircle.wasKeyPressed(self.k1):
+        if ccircle.wasKeyPressed(self.k1) and self.countdown1 <= 0:
             self.hit = 3.5
             self.dl = []
             self.da = []
@@ -85,6 +96,7 @@ class moves:
             elif self.m1 == 4:
                 self.countdown1 = 20
                 self.mt1 = 20
+                self.shield = True
             elif self.m1 == 5 and ex<250:
                 self.da = [random.randint(25,35)]
                 self.countdown1 = 8
@@ -97,8 +109,9 @@ class moves:
                 self.da =[22]
                 self.countdown1 = 6
                 self.mt1 = 6
+            self.eh -= sum(self.da)
 
-        if ccircle.wasKeyPressed(self.k2):
+        if ccircle.wasKeyPressed(self.k2) and self.countdown2 <= 0:
             self.hit = 2
             self.da = []
             self.dl = []
@@ -124,6 +137,7 @@ class moves:
             elif self.m2 == 4:
                 self.countdown2 = 20
                 self.mt2 = 20
+                self.shield = True
             elif self.m2 == 5 and ex<250:
                 self.da = [random.randint(25, 35)]
                 self.countdown2 = 8
@@ -134,8 +148,9 @@ class moves:
                 self.mt2 = 15
             elif self.m2 == 7and ex<400:
                 self.da = [22]
-                self.countdown2 = 5
-
+                self.countdown2 = 7
+                self.mt2 = 7
+            self.eh -= sum(self.da)
 
     def update(self, dt):
         self.countdown1 -=dt
@@ -146,9 +161,9 @@ class moves:
             self.countdown2 = 0
         self.hit -= dt
 
-        if ccircle.isKeyDown('f'):
+        if ccircle.isKeyDown(self.ek2):
             self.ex += dt * 25
-        if ccircle.isKeyDown('s'):
+        if ccircle.isKeyDown(self.ek1):
             self.ex -= dt * 25
         if self.ex > 940:
             self.ex = 940
