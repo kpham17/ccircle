@@ -144,8 +144,8 @@ while window.isOpen():
         myWorld.draw(window)
         myMoves1.draw(window,m11,m12)
         myMoves2.draw(window,m21,m22)
-        myMoves1.if_clicked(dis)
-        myMoves2.if_clicked(dis)
+        myMoves1.if_clicked(dis,m11,m12)
+        myMoves2.if_clicked(dis,m21,m22)
         if myMoves2.eh <= 0 or myMoves1.eh <= 0:
             pg  = 0
         myMoves2.update(dt)

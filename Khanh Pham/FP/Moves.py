@@ -70,42 +70,42 @@ class moves:
         window.drawRect(self.x+4,self.y+4,60,60 *self.countdown2/self.mt2,1,1,1,0.5)
 
 
-    def if_clicked(self,ex):
+    def if_clicked(self,ex,m1,m2):
         if ccircle.wasKeyPressed(self.k1) and self.countdown1 <= 0:
             self.hit = 3.5
             self.dl = []
             self.da = []
-            if self.m1 == 0 and ex<200:
+            if m1 == 0 and ex<200:
                 self.da = [random.randint(20,30)]
                 self.countdown1 = 6
                 self.mt1 = 6
-            elif self.m1 == 1 and ex<200:
+            elif m1 == 1 and ex<200:
                 self.da = [random.randint(30,40)]
                 self.countdown1 = 10
                 self.mt1 = 7
-            elif self.m1 == 2 and ex<600:
+            elif m1 == 2 and ex<600:
                 for i in range(3):
                     self.da.append(random.randint(0,12))
                 self.countdown1 = 6
                 self.mt1 = 5
-            elif self.m1 == 3and ex<400:
+            elif m1 == 3and ex<400:
                 for i in range(5):
                     self.da.append(random.randint(0, 7))
                 self.countdown1 = 7
                 self.mt1 = 6
-            elif self.m1 == 4:
+            elif m1 == 4:
                 self.countdown1 = 20
                 self.mt1 = 20
                 self.shield = True
-            elif self.m1 == 5 and ex<250:
+            elif m1 == 5 and ex<250:
                 self.da = [random.randint(25,35)]
                 self.countdown1 = 8
                 self.mt1 = 8
-            elif self.m1 == 6 and ex<100:
+            elif m1 == 6 and ex<100:
                 self.da = [random.randint(40,50)]
                 self.countdown1 = 15
                 self.mt1 = 15
-            elif self.m1 == 7 and ex<400:
+            elif m1 == 7 and ex<400:
                 self.da =[22]
                 self.countdown1 = 6
                 self.mt1 = 6
@@ -116,37 +116,37 @@ class moves:
             self.da = []
             self.dl = []
             self.store = True
-            if self.m2 == 0and ex<200:
+            if m2 == 0and ex<200:
                 self.da = [random.randint(20, 30)]
                 self.countdown2 = 6
                 self.mt2 = 6
-            elif self.m2 == 1and ex<200:
+            elif m2 == 1and ex<200:
                 self.da = [random.randint(30, 40)]
                 self.countdown2 = 10
                 self.mt2 = 7
-            elif self.m2 == 2and ex<600:
+            elif m2 == 2and ex<600:
                 for i in range(3):
                     self.da.append(random.randint(0, 12))
                 self.countdown2 = 5
                 self.mt2 = 5
-            elif self.m2 == 3and ex<400:
+            elif m2 == 3and ex<400:
                 for i in range(5):
                     self.da.append(random.randint(0, 7))
                 self.countdown2 = 6
                 self.mt2 = 6
-            elif self.m2 == 4:
+            elif m2 == 4:
                 self.countdown2 = 20
                 self.mt2 = 20
                 self.shield = True
-            elif self.m2 == 5 and ex<250:
+            elif m2 == 5 and ex<250:
                 self.da = [random.randint(25, 35)]
                 self.countdown2 = 8
                 self.mt2 = 6
-            elif self.m2 == 6 and ex<100:
+            elif m2 == 6 and ex<100:
                 self.da = [random.randint(40, 50)]
                 self.countdown2 = 15
                 self.mt2 = 15
-            elif self.m2 == 7and ex<400:
+            elif m2 == 7and ex<400:
                 self.da = [22]
                 self.countdown2 = 7
                 self.mt2 = 7
